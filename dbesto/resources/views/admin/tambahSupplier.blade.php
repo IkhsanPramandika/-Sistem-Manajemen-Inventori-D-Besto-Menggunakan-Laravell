@@ -1,6 +1,6 @@
 @extends('admin.utama')
 @section('content')
-<form action="/tambahSupplier1" method="POST">
+<form action="/tambahsupplierbaru" method="POST">
     @csrf
 
     <div class="form-group">
@@ -10,7 +10,7 @@
 
     <div class="form-group">
         <label for="nama_bahan">Nama Telepon:</label>
-        <input type="text" name="Nomor_telepon" class="form-control" id="Nomor_telepon" required>
+        <input type="number" name="Nomor_telepon" class="form-control" id="Nomor_telepon" required>
     </div>
 
     <div class="form-group">

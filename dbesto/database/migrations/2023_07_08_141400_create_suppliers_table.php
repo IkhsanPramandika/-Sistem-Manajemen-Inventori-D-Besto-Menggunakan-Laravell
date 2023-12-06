@@ -17,7 +17,7 @@ return new class extends Migration
             $table->char('Nomor_telepon',13);
             $table->string('Alamat',25);
             $table->string('Nama_produk',25);
-            $table->string('Kontrak_kerja');
+ 
 
             $table->timestamps();
         });

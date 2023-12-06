@@ -10,7 +10,7 @@ class BahanBaku extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['Kode_bahan', 'Nama_bahan', 'Status', 'Total_Produk'];
+    protected $fillable = ['Nama_bahan', 'Status', 'Total_Produk'];
     protected $table = 'bahan_bakus';
     protected $primaryKey = 'Kode_bahan';
 

@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Produk;
-use App\Http\Requests\StoreProdukRequest;
-use App\Http\Requests\UpdateProdukRequest;
+use App\Models\Transaksi;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProdukController extends Controller
 {
@@ -18,39 +17,55 @@ class ProdukController extends Controller
 
     public function create()
     {
-        return view('admin.tambahProduk');
+        return view('admin.tambahproduk');
     }
 
     public function store(Request $request)
     {
-        $dataP = $request->validate([
-            'GambarMenu' => 'required',
+        $validatedData = $request->validate([
             'Nama_menu' => 'required',
             'Harga_menu' => 'required',
+            'stok' => 'required|integer',
             'Deskripsi' => 'required',
         ]);
-    
-        Produk::create($dataP);
+
+        Produk::create($validatedData);
+
         return redirect('/produk')->with('success', 'Data Produk berhasil ditambahkan.');
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $produk = Produk::findOrFail($id);
-        return view('produk.editproduk', compact('produk'));
+
+        return view('admin.editproduk', compact('produk'));
     }
 
-    public function update(UpdateProdukRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'Nama_menu' => 'required',
+            'Harga_menu' => 'required',
+            'stok' => 'required|integer',
+            'Deskripsi' => 'required',
+        ]);
+
         $produk = Produk::findOrFail($id);
-        $dataP = $request->validated();
-        $produk->update($dataP);
+        $produk->update($validatedData);
+
         return redirect('/produk')->with('success', 'Data Produk berhasil diperbarui.');
     }
 
-    public function delete(Produk $produk)
+    public function destroy($id)
     {
-        $produk->delete();
+        Produk::destroy($id);
+
         return redirect('/produk')->with('success', 'Data Produk berhasil dihapus.');
     }
+
+// public function menu()
+// {
+//     return $this->belongsTo(Transaksi::class, 'nama_menu');
+// }
+// 
 }

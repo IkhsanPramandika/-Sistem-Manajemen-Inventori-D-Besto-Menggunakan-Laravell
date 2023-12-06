@@ -7,6 +7,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Tabel Produk</h6>
                         </div>
                         <div class="card-body">
+                           
                             
                             <div class="table-responsive">
                                 <div class="d-flex justify-content-end mb-3">
@@ -17,11 +18,11 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Gambar Menu</th> 
                                             <th>Nama Menu</th>          
                                             <th>Harga Menu</th>
+                                            <th>Stok</th>
                                             <th>Deskripsi </th>
-                                            <th>Tanggal</th>
+                                    
                                             <th>Action </th>
                                             
                                         
@@ -31,22 +32,26 @@
                                     
                                         <tr>
                                             <td>{{ $dataP->id }}</td>
-                                            <td><img src="{{ $dataP->GambarMenu }}" alt="Gambar Menu"></td>
                                             <td>{{ $dataP->Nama_menu }}</td>
                                             <td>{{ $dataP->Harga_menu }}</td>
+                                            <td>{{ $dataP->stok }}</td>
                                             <td>{{ $dataP->Deskripsi }}</td>
-                                            <td>{{ $dataP->created_at->format('Y-m-d') }}</td> 
-                                            <td> 
-                                                <button onclick="window.location='{{ url('produk/'.$dataP->id.'/show') }}'" type="button" class="btn btn-sm btn-info" title="Edit Data">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                
-                                            </td> 
+                                
+                                            <td>
+                                            <a href="{{ url("/produk/". $dataP->id ."/edit")}}" class="btn btn-info btn-rounded btn-sm" style="border-color: white; background-color: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                                                <i class="fas fa-pen" style="color: black;"></i> 
+                                            </a>
+                                            
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="/produk/{{ $dataP->id }}" id="btn-delete-post" class="btn btn-danger btn-rounded btn-sm" style="border-color: white; background-color: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                                                <i class="fas fa-trash-alt" style="color: red;"></i> 
+                                            </a>
+                                        </td>
                                         </tr>
-                                    
                                       
                                         @endforeach
-                                    </tbody>
+                                    </tbody>    
                                 </table>
                             </div>
                         </div>
@@ -70,6 +75,18 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#produks').DataTable({
+                searching: true, // Aktifkan fitur pencarian
+                ordering: true, // Aktifkan fitur pengurutan
+            });
+        });
+    </script>
 
 </body>
 

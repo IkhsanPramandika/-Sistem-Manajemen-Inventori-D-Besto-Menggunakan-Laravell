@@ -35,7 +35,17 @@ class TransaksiController extends Controller
         $dataT = $request->validate([
             'Nama_kasir' => 'required',
             'Nama_customer' => 'required',
+            'jenis_layanan' => 'required',
+            'cabang' => 'required',
+            'nama_menu' => 'required',
+            'harga_menu' => 'required',
+            'qty' => 'required',
             'Total_harga' => 'required',
+            'jenis_pembayaran' => 'required',
+            
+
+        
+        
         ]);
     
         Transaksi::create($dataT);

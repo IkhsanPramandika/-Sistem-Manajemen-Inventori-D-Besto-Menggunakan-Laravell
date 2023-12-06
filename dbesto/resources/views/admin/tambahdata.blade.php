@@ -3,10 +3,6 @@
 <form action="/tambah" method="POST">
     @csrf
 
-    <div class="form-group">
-        <label for="kode_bahan">Kode Bahan:</label>
-        <input type="text" name="Kode_bahan" class="form-control" id="Kode_bahan" required>
-    </div>
 
     <div class="form-group">
         <label for="nama_bahan">Nama Bahan:</label>

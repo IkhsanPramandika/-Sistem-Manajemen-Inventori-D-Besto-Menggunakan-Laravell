@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BahanBaku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class BahanBakuController extends Controller
 {
@@ -31,7 +33,8 @@ class BahanBakuController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'Kode_bahan' => 'required',
+            
+        
             'Nama_bahan' => 'required',
             'Total_Produk' => 'required',
         ]);
@@ -51,30 +54,33 @@ class BahanBakuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(BahanBaku $BahanBaku)
+
+    public function edit($Kode_bahan)
     {
-        return view('admin.editbahan', compact('bahanBaku'));
+        $BahanBaku = DB::table('bahan_bakus')->first();
+        $data = DB::table('bahan_bakus')->where('Kode_bahan', $Kode_bahan)->first();
+        return view('admin.editbahanbaku', compact('BahanBaku'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, BahanBaku $BahanBaku)
-    {
-        $data = $request->validate([
-            'Kode_bahan' => 'required',
-            'Nama_bahan' => 'required',
-            'Total_Produk' => 'required',
-        ]);
+        public function update(Request $request,$Kode_bahan)
+        {
+            $validated = $request->validate([
+                'Nama_bahan' ,
+                'Total_Produk' 
+            ]);
 
-        $BahanBaku->update($data);
-        return redirect('/bahanbaku');
-    }
-
-   
-    public function destroy($BahanBaku)
+            DB::table('bahan_bakus')->where('Kode_bahan', $Kode_bahan)->update([
+                'Nama_bahan' => $request->Nama_bahan,
+                'Total_Produk' => $request->Total_Produk,
+            ]);
+            return redirect('/bahanbaku')->with('success', 'Data Produk berhasil diperbarui.');
+        }
+        
+    
+    
+    public function hapusbahan($Kode_bahan)
     {
-        BahanBaku::findOrFail($BahanBaku)->delete();
-        return redirect('/bahanbaku')->with('success', 'Data Bahan Baku berhasil dihapus.');
+         DB::table('bahan_bakus')->where('Kode_bahan',$Kode_bahan)->delete();
+        return redirect('/bahanbaku')->with('success', 'Data Berhasil dihapus');
     }
 }

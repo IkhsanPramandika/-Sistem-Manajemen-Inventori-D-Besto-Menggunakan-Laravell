@@ -20,9 +20,9 @@
                             <th>Nama Supplier</th>
                             <th>Nomor Telepon</th>
                             <th>Alamat</th>
-                            <th>Nama Produk</th>
-                            <th>Kontrak Kerja</th>
+                            <th>Nama Bahan</th>
                             <th>Tanggal</th>
+                            <th>Action</th>
 
                         </tr>
                     </thead>
@@ -35,16 +35,23 @@
                                 <td>{{ $dataS->Alamat }}</td>
                                 <td>{{ $dataS->Nama_produk }}</td>  
                                 <td>{{ $dataS->created_at->format('Y-m-d') }}</td>
+            
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ $dataS->id }}">Edit</button>
-                                    <form action="/supplier{{ $dataS->id }}" method="POST" style="display: inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
-                                    </form>
+                                    <a href="{{ url("/supplier/". $dataS->id ."/edit")}}" class="btn btn-info btn-rounded btn-sm" style="border-color: white; background-color: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                                        <i class="fas fa-pen" style="color: black;"></i> 
+                                    </a>
+                                    
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="/supplier/{{ $dataS->id }}" id="btn-delete-post" class="btn btn-danger btn-rounded btn-sm" style="border-color: white; background-color: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                                        <i class="fas fa-trash-alt" style="color: red;"></i> 
+                                    </a>
                                 </td>
-                            </tr>
-
+                                
+                                
+                                
+                                
+                                 </tr>
                             <!-- Modal Edit -->
 
                             <!-- End Modal Edit -->

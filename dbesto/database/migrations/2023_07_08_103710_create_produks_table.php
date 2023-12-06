@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id(); 
             $table->string('Nama_menu',25);
             $table->string('Harga_menu',25);
+            $table->integer('stok') ;// Tambahkan kolom stok
             $table->string('Deskripsi',50);
             $table->string('GambarMenu')->nullable();
             $table->timestamps();

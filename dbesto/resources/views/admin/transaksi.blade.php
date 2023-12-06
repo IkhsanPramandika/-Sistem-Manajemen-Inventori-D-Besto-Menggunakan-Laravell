@@ -16,12 +16,19 @@
                                     </a>
                                     <thead>
                                         <tr>
-                                            <th>Invoice</th>
+                                            <th>Tanggal</th>
+                                            <th>Invoice </th>
                                             <th>Nama Kasir</th>
                                             <th>Nama Customer</th>
-                                            <th>Status</th>
-                                            <th>Total Harga </th>
-                                            <th>Tanggal</th>
+                                            <th>Jenis Layanan</th>
+                                            <th>Cabang d'Besto</th>
+                                            <th>Nama Menu</th>
+                                            <th>Jenis Pembayaran</th>
+                                            <th>Harga Menu</th>
+                                            <th>QTY </th>
+                                            <th>Total Harga</th>
+                                          
+                            
                                             
                                         
                                         </tr>
@@ -29,12 +36,20 @@
                                     @foreach ($transaksi as $dataT) 
                                     
                                         <tr>
+                                            <td>{{ $dataT->created_at ? $dataT->created_at->format('Y-m-d') : '-' }}</td>
+
                                             <td>{{ $dataT->Invoice }}</td>
                                             <td>{{ $dataT->Nama_kasir }}</td>
                                             <td>{{ $dataT->Nama_customer }}</td>
-                                            <td>{{ $dataT->Status}}</td>
+                                            <td>{{ $dataT->jenis_layanan }}</td>
+                                            <td>{{ $dataT->cabang }}</td>
+                                            <td>{{ $dataT->nama_menu}}</td>
+                                            <td>{{ $dataT->jenis_pembayaran}}</td>
+                                            <td>{{ $dataT->harga_menu}}</td>
+                                            <td>{{ $dataT->qty}}</td>
                                             <td>{{ $dataT->Total_harga }}</td>
-                                            <td>{{ $dataT->created_at->format('Y-m-d') }}</td>
+                                         
+                                            
 
                                         </tr>
                                     

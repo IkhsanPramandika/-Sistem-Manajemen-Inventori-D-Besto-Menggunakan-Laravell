@@ -15,8 +15,13 @@ return new class extends Migration
             $table->id('Invoice');
             $table->string('Nama_kasir',25);
             $table->string('Nama_customer',25);
-            $table->enum('Status',['Banyak','Sedikit','Kurang']);
-            $table->string('Total_harga');
+            $table->enum('jenis_layanan',['Take Away','Delivery']);
+            $table->enum('cabang',['Panam','Rumbai','Sudirman','KH Ahmad Dahlan']);
+            $table->enum('nama_menu',['Kentang Goreng','Burger','Ayam','Spaghetii']);
+            $table->enum('jenis_pembayaran',['Shopepay','QRIS','Cash']);
+            $table->enum('harga_menu',['8000','9000','10000','11000']);
+            $table->int('qty');
+            $table->string('Total_harga',225);
             $table->timestamps();
         });
     }
